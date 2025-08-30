@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>NUI Lobbies</title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="container">
+            <div id="lobbie" style="display: none; background: rgb(19, 28, 74);"></div>
+        </div>
+        <div id="formContainer" style="display: none;">
+            <form id="newLobbie">
+                <div>
+                    <text>Lobbie ID (unique)</text>
+                    <input id="lobbieid" type="text" name="lobbieid" placeholder='Lobbie ID'><br>
+                </div>
+
+                <div>
+                    <text>Lobbie name (unique)</text>
+                    <input id="lobbiename" type="text" name="lobbiename" placeholder='Lobbie Name'><br>
+                </div>
+
+                <div>
+                    <text>Filename (unique)</text>
+                    <input id="filename" type="text" name="filename" placeholder='Filename'><br>
+                </div>
+
+                <div>
+                    <text>Lobbie Type</text>
+                    <select id ='lobbietype' name='lobbietype' class='dropdown'>
+                        <option option value='default'>Default</option>
+                        <option option value='admin'>Admin</option>
+                        <option option value='job'>Job</option>
+                        <option option value='gang'>Gang</option>
+                        <option option value='zombie'>Zombie</option>
+                        <option option value='cheat'>cheat</option>
+                    </select>
+                </div>
+
+                <div>
+                    <text>Population</text>
+                    <select id ='population' name='population' class='dropdown'>
+                        <option option value='true'>yes</option>
+                        <option option value='false'>no</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <text>Lockdown</text>
+                    <select id ='lockdown' name='lockdown' class='dropdown'>
+                        <option option value='inactive'>inactive</option>
+                        <option option value='relaxed'>relaxed</option>
+                        <option option value='strict'>strict</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <text>Travel Price</text>
+                    <input id="price" type="text" name="price" placeholder = '0'><br>
+                </div>
+
+                <div>
+                    <button id="submit" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <script src="script.js" type="text/javascript"></script>
+    </body>
+</html>
