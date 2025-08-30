@@ -1,27 +1,12 @@
 --[[ ===================================================== ]]--
 --[[                 MH Lobbies by MaDHouSe                ]]--
 --[[ ===================================================== ]]--
-local zoneSet = false
 local menuOpen = false
-
-local function ToggleLobbieMode(id)
-    if not IsCutsceneActive() and not IsCutscenePlaying() then
-        if not zoneSet then
-            zoneSet = true
-            --if config.Lobbies[id].isGang then EnableGang() elseif not config.Lobbies[id].isGang then DisableGang() end
-            --if config.Lobbies[id].isZombie then EnableZombies() elseif not config.Lobbies[id].isZombie then DisableZombies() end
-            --if config.Lobbies[id].isCheat then EnableCheatMode() elseif not config.Lobbies[id].isCheat then DisableCheatMode() end
-        end
-    end
-    if config.DebugMode then
-        print(config.Lobbies[id].label, "Admin "..tostring(config.Lobbies[id].isAdmin), "Gang "..tostring(config.Lobbies[id].isGang), "Zombie ".. tostring(config.Lobbies[id].isZombie), "Cheat "..tostring(config.Lobbies[id].isCheat))
-    end
-end
 
 RegisterNetEvent('mh-lobbies:client:setLobbieId', function(data)
     lobbie = data.id
     GoToLocation(lobbie)
-    zoneSet = false
+    menuOpen = false
 end)
 
 local target = false
@@ -104,16 +89,6 @@ end)
 RegisterNUICallback('close', function(data, cb)
     CloseNUI()
     cb('ok')
-end)
-
-CreateThread(function()
-    while true do
-        local sleep = 5000
-        if isLoggedIn and lobbie ~= nil and lobbie >= 0 and config.Lobbies ~= nil and config.Lobbies[lobbie] ~= nil then
-            if not zoneSet then ToggleLobbieMode(lobbie) end
-        end
-        Wait(sleep)
-    end
 end)
 
 CreateThread(function()
