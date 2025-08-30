@@ -33,15 +33,6 @@ SV_Config.TeleportModels = {
 }
 --
 SV_Config.UseCutScene = true
-SV_Config.PlanePedList = {
-    [0] = "MP_Plane_Passenger_1",
-    [1] = "MP_Plane_Passenger_2",
-    [2] = "MP_Plane_Passenger_3",
-    [3] = "MP_Plane_Passenger_4",
-    [4] = "MP_Plane_Passenger_5",
-    [5] = "MP_Plane_Passenger_6",
-    [6] = "MP_Plane_Passenger_7"
-}
 --
 SV_Config.UseProgressBar = true
 SV_Config.ProgressBarTimer = 1000
