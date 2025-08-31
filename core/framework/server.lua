@@ -90,16 +90,3 @@ else
     end
 
 end
-
-function IsAdmin(src)
-    if IsPlayerAceAllowed(src, 'admin') or IsPlayerAceAllowed(src, 'command') then return true end
-    return false
-end
-
-function SplitString(str, delimiter)
-    local returnTable = {}
-    for k, v in string.gmatch(str, "([^" .. delimiter .. "]+)")  do
-        returnTable[#returnTable+1] = k
-    end
-    return returnTable
-end

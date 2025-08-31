@@ -1,7 +1,6 @@
 --[[ ===================================================== ]]--
 --[[                 MH Lobbies by MaDHouSe                ]]--
 --[[ ===================================================== ]]--
-local cooldown = {}
 
 RegisterCommand("setcheater", function(source, args, rawCommand)
     local playerId = nil

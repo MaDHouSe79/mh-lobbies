@@ -2,6 +2,16 @@
 --[[                 MH Lobbies by MaDHouSe                ]]--
 --[[ ===================================================== ]]--
 
+function FileExists(name)
+   local f= io.open(name,"r")
+   if f ~= nil then io.close(f) return true else return false end
+end
+
+function IsAdmin(src)
+    if IsPlayerAceAllowed(src, 'admin') or IsPlayerAceAllowed(src, 'command') then return true end
+    return false
+end
+
 function Pay(src, lobbieId)
     if SV_Config.MoneyType == nil then
         return true

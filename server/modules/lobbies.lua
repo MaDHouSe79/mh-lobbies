@@ -78,13 +78,13 @@ end
 function Lobbies:newLobbie(src, data)
     if type(data) == 'table' then
         local path = GetResourcePath(GetCurrentResourceName())
-        if data.filename ~= nil then
-            if data.filename == 'main' then
-                Notify(src, Lang:t('file_already_exist', {filename = data.filename}), "info", 5000)
-                return
-            else
-                path = path:gsub('//', '/') .. '/server/configs/' .. string.gsub(data.filename:lower(), ".lua", "") .. '.lua'
-                if path ~= nil then
+        path = path:gsub('//', '/') .. '/server/configs/' .. string.gsub(data.filename:lower(), ".lua", "") .. '.lua'
+        if path ~= nil then
+            if data.filename ~= nil then
+                if data.filename == 'main' or FileExists(path) then
+                    Notify(src, Lang:t('file_already_exist', {filename = data.filename}), "info", 5000)
+                    return
+                elseif data.filename ~= 'main' and not FileExists(path) then
                     local file = io.open(path, 'a+')
                     local config = 'SV_Config.Lobbies['..data.lobbieid..'] = {\n    id = ' .. data.lobbieid .. ',\n    label = "' .. data.lobbiename .. '",\n    lockdown = "' .. data.lockdown .. '",\n    population = ' .. tostring(data.population) .. ',\n    isAdmin = ' .. tostring(data.isAdmin) .. ',\n    isGang = ' .. tostring(data.isGang) .. ',\n    isZombie = ' .. tostring(data.isZombie) .. ',\n    isCheat = ' .. tostring(data.isCheat) .. ',\n    players = 0,\n    price = ' .. data.price.. ',\n    spawnCoords = ' .. data.spawnCoords ..'\n}'
                     file:write(config)
@@ -94,12 +94,15 @@ function Lobbies:newLobbie(src, data)
                     SV_Config.Lobbies[newdata.id] = newdata
                     Notify(src, "New "..SV_Config.Lobbies[newdata.id].label.." is created!", "info", 5000)
                     Lobbies:refresh()
-                end                
+                    return         
+                end
+            elseif data.filename == nil then
+                Notify(src, Lang:t('not_enter_a_filename'), "info", 5000)
+                return
             end
-        elseif data.filename == nil then
-            Notify(src, Lang:t('not_enter_a_filename'), "info", 5000)
+        else
             return
-        end
+        end 
     elseif type(data) ~= 'table' then
         print(Lang:t('create_new_lobbie_error'))
         return
@@ -108,15 +111,15 @@ end
 
 function Lobbies:deleteFile(src, filename)
     local path = GetResourcePath(GetCurrentResourceName())
-    if data.filename == 'main' then
-        Notify(src, Lanf:t('delete_default_file_error', {filename = filename}) , "info", 5000)
+    if filename == 'main' then
+        Notify(src, Lang:t('delete_default_file_error', {filename = filename}) , "info", 5000)
         return
     else
         path = path:gsub('//', '/') .. '/server/configs/' .. string.gsub(filename, ".lua", "") .. '.lua'
-        if path then 
+        if path and FileExists(path) then
             local remove, error = os.remove(path)
             if remove then
-                Notify(src, Lanf:t('file_deleted', {filename = "(server/configs/"..filename..".lua)"}) , "info", 5000)
+                Notify(src, Lang:t('file_deleted', {filename = "(server/configs/"..filename..".lua)"}) , "info", 5000)
                 return
             else
                 print(error)

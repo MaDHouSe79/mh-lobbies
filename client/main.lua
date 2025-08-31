@@ -33,7 +33,6 @@ AddEventHandler(OnPlayerLoaded, function()
     TriggerServerEvent('mh-lobbies:server:onjoin')
     target = false
     menuOpen = false
-    zoneSet = false
     isLoggedIn = true
     isCheater = false
 end)
@@ -47,7 +46,6 @@ AddEventHandler('onResourceStart', function(resource)
         isCheater = false        
         target = false
         menuOpen = false
-        zoneSet = false
     end
 end)
 
@@ -58,7 +56,6 @@ AddEventHandler('onResourceStop', function(resource)
         isCheater = false        
         target = false
         menuOpen = false
-        zoneSet = false
     end
 end)
 
@@ -89,6 +86,18 @@ end)
 RegisterNUICallback('close', function(data, cb)
     CloseNUI()
     cb('ok')
+end)
+
+CreateThread(function()
+    while true do
+        local sleep = 5000
+        if isLoggedIn and lobbie ~= nil and lobbie >= 0 and config.Lobbies ~= nil and config.Lobbies[lobbie] ~= nil then
+            if config.DebugMode then
+                print(config.Lobbies[lobbie].label, "Admin "..tostring(config.Lobbies[lobbie].isAdmin), "Gang "..tostring(config.Lobbies[lobbie].isGang), "Zombie ".. tostring(config.Lobbies[lobbie].isZombie), "Cheat "..tostring(config.Lobbies[lobbie].isCheat))
+            end
+        end
+        Wait(sleep)
+    end
 end)
 
 CreateThread(function()
