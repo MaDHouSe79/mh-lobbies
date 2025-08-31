@@ -67,11 +67,6 @@ RegisterCommand('openmenu', function()
     OpenLobbieMenu()
 end, true)
 
-RegisterCommand("cut", function(source, args)
-    local ped = PlayerPedId()
-    StartCutscene(0)
-end)
-
 RegisterNUICallback('newData', function(data, cb)
     CloseNUI()
     cb('ok')
