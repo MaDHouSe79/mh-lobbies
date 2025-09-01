@@ -86,11 +86,11 @@ function Lobbies:newLobbie(src, data)
                     return
                 elseif data.filename ~= 'main' and not FileExists(path) then
                     local file = io.open(path, 'a+')
-                    local config = 'SV_Config.Lobbies['..data.lobbieid..'] = {\n    id = ' .. data.lobbieid .. ',\n    label = "' .. data.lobbiename .. '",\n    lockdown = "' .. data.lockdown .. '",\n    population = ' .. tostring(data.population) .. ',\n    isAdmin = ' .. tostring(data.isAdmin) .. ',\n    isGang = ' .. tostring(data.isGang) .. ',\n    isZombie = ' .. tostring(data.isZombie) .. ',\n    isCheat = ' .. tostring(data.isCheat) .. ',\n    players = 0,\n    price = ' .. data.price.. ',\n    spawnCoords = ' .. data.spawnCoords ..'\n}'
+                    local config = 'SV_Config.Lobbies['..data.lobbieid..'] = {\n    id = ' .. data.lobbieid .. ',\n    label = "' .. data.lobbiename .. '",\n    lockdown = "' .. data.lockdown .. '",\n    population = ' .. tostring(data.population) .. ',\n    isAdmin = ' .. tostring(data.isAdmin) .. ',\n    isDrift = ' .. tostring(data.isDrift) .. ',\n    isGang = ' .. tostring(data.isGang) .. ',\n    isZombie = ' .. tostring(data.isZombie) .. ',\n    isCheat = ' .. tostring(data.isCheat) .. ',\n    players = 0,\n    price = ' .. data.price.. ',\n    spawnCoords = ' .. data.spawnCoords ..'\n}'
                     file:write(config)
                     file:close()
                     Notify(src, Lang:t('file_created', {filename = "(server/configs/"..data.filename:lower()..".lua)"}), "info", 5000)
-                    local newdata = {id = data.lobbieid, label = data.lobbiename, lockdown = data.lockdown, population = data.population, isAdmin = data.isAdmin, isGang = data.isGang, isZombie = data.isZombie, isCheat = data.isCheat, players = 0, price = data.price, coords = data.spawnCoords}
+                    local newdata = {id = data.lobbieid, label = data.lobbiename, lockdown = data.lockdown, population = data.population, isAdmin = data.isAdmin, isDrift = data.isDrift, isGang = data.isGang, isZombie = data.isZombie, isCheat = data.isCheat, players = 0, price = data.price, coords = data.spawnCoords}
                     SV_Config.Lobbies[newdata.id] = newdata
                     Notify(src, "New "..SV_Config.Lobbies[newdata.id].label.." is created!", "info", 5000)
                     Lobbies:refresh()

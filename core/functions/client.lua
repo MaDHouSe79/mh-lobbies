@@ -15,6 +15,7 @@ local function RelocatePlayer(lobbieId)
     DisableGang()
     DisableZombies()
     DisableCheatMode()
+    DisableDriftingMode()
     DeleteAllPeds()
     if config.Lobbies[lobbieId].spawnCoords ~= nil and config.Lobbies[lobbieId].spawnCoords ~= false then
         SetEntityCoords(PlayerPedId(), config.Lobbies[lobbieId].spawnCoords.xyz)
@@ -22,9 +23,11 @@ local function RelocatePlayer(lobbieId)
     end
     Wait(1000)
     DeleteAllPeds()
+    if config.Lobbies[lobbieId].isDrift then EnableDriftingMode() elseif not config.Lobbies[lobbieId].isDrift then DisableDriftingMode() end
     if config.Lobbies[lobbieId].isGang then EnableGang() elseif not config.Lobbies[lobbieId].isGang then DisableGang() end
     if config.Lobbies[lobbieId].isZombie then EnableZombies() elseif not config.Lobbies[lobbieId].isZombie then DisableZombies() end
     if config.Lobbies[lobbieId].isCheat then EnableCheatMode() elseif not config.Lobbies[lobbieId].isCheat then DisableCheatMode() end
+    DoScreenFadeIn(100)
     Notify(Lang:t('now_in_lobbie', {lobbie = config.Lobbies[lobbieId].label}), "info", 5000)
 end
 

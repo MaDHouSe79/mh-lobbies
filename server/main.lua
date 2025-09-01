@@ -91,9 +91,11 @@ end)
 RegisterNetEvent('mh-lobbies:server:newLobbie', function(data)
     local src = source
     if IsAdmin(src) then
-        local isAdmin, isJob, isGang, isZombie, isCheat = false, false, false, false, false
+        local isAdmin, isDrift, isJob, isGang, isZombie, isCheat = false, false, false, false, false, false
         if data.lobbietype == 'cheat' then
             isCheat = true
+        elseif data.lobbietype == 'drift' then
+            isDrift = true
         elseif data.lobbietype == 'job' then
             isJob = true
         elseif data.lobbietype == 'gang' then
@@ -116,6 +118,7 @@ RegisterNetEvent('mh-lobbies:server:newLobbie', function(data)
             spawnCoords = SV_Config.SpawnPoint,
             population = population,
             isAdmin = isAdmin,
+            isDrift = isDrift,
             isJob = isJob,
             isGang = isGang,
             isZombie = isZombie,

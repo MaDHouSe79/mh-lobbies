@@ -32,7 +32,7 @@ SV_Config.TeleportModels = {
     "prop_train_ticket_02",
 }
 --
-SV_Config.UseCutScene = true
+SV_Config.UseCutScene = false
 SV_Config.PlanePedList = {
     [0] = "MP_Plane_Passenger_1",
     [1] = "MP_Plane_Passenger_2",
@@ -76,6 +76,11 @@ SV_Config.SpawnPoints = {
     [2] = {
         id = 2,
         label = "Gang Lobbie",
+        coords = vector4(-1039.0568, -2739.4216, 13.8450, 330.6916),
+    },
+    [3] = {
+        id = 3,
+        label = "Drifting Lobbie",
         coords = vector4(-1039.0568, -2739.4216, 13.8450, 330.6916),
     },
 }
