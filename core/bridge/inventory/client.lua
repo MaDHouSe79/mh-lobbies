@@ -29,9 +29,9 @@ if GetResourceState("ox_inventory") ~= 'missing' then
 
         LockInventory = function(state)
             if state then
-                LocalPlayer.state:set("inv_busy", true, true) -- lock
+                LocalPlayer.state:set("invBusy", true, true) -- lock
             else
-                LocalPlayer.state:set("inv_busy", false, true) -- unlock
+                LocalPlayer.state:set("invBusy", false, true) -- unlock
             end
         end,
 
