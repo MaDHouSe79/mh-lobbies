@@ -9,6 +9,7 @@ if GetResourceState("ox_inventory") ~= 'missing' then
                 for _, itemData in pairs(PlayerData.inventory) do
                     if itemData.name:lower() == item:lower() then
                         return true
+                        break
                     end
                 end
             end
