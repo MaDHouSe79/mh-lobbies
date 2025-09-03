@@ -21,7 +21,8 @@ shared_scripts {
 }
 
 client_scripts {
-    'core/framework/client.lua',
+    'core/bridge/framework/client.lua',
+    'core/bridge/inventory/client.lua',
     'core/functions/client.lua',
     'client/main.lua',
     'client/lobbies/*.lua',
@@ -31,7 +32,8 @@ server_scripts {
     '@oxmysql/lib/MySQL.lua',
     'core/sv_config.lua',
     'server/configs/*.lua',
-    'core/framework/server.lua',
+    'core/bridge/framework/server.lua',
+    'core/bridge/inventory/server.lua',
     'core/functions/server.lua',
     'server/modules/lobbies.lua',
     'server/main.lua',
