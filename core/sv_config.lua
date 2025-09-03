@@ -13,20 +13,18 @@ if GetResourceState("es_extended") ~= 'missing' then
     SV_Config.MoneyType = 'money'
 elseif GetResourceState("qb-core") ~= 'missing' then
     SV_Config.MoneyType = 'cash'
+else
+    SV_Config.MoneyType = 'cash'
 end
 
-SV_Config.Target = nil
-SV_Config.UseTarget = false -- if false it use 3D text on screen.
-if GetResourceState("ox_target") ~= 'missing' then
-    SV_Config.Target = 'ox_target'
-elseif GetResourceState("qb-target") ~= 'missing' then
-    SV_Config.Target = 'qb-target'
-end
+
+SV_Config.UseTarget = true -- if false it use 3D text on screen.
+SV_Config.Target = 'ox_target' -- qb-target or ox_target
 -- Don't change this above.
 
 SV_Config.DebugMode = false
 --
-SV_Config.Menu = 'qb' -- qb or ox
+SV_Config.Menu = 'ox' -- qb or ox
 --
 SV_Config.TeleportModels = {
     "prop_train_ticket_02",
@@ -43,7 +41,7 @@ SV_Config.PlanePedList = {
     [6] = "MP_Plane_Passenger_7"
 }
 --
-SV_Config.UseProgressBar = true
+SV_Config.UseProgressBar = false
 SV_Config.ProgressBarTimer = 1000
 --
 SV_Config.CheatLobbie = 1000 -- cheater lobbie id
@@ -85,6 +83,6 @@ SV_Config.SpawnPoints = {
     },
 }
 --
-SV_Config.WhitelistedWeapons = {
-    ['weapon_petrolcan'] = true,
+SV_Config.DriftVehicleList = {
+    "adder",
 }

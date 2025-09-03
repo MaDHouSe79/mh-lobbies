@@ -37,36 +37,23 @@ local function ToggleDrifting(vehicle)
     local modifier = 1
     if GetVehicleHandlingFloat(vehicle, "CHandlingData", "fInitialDragCoeff") > 90 then driftMode = true else driftMode = false end
     if driftMode then modifier = -1 end
-
     for _, value in ipairs(handleMods) do
         SetVehicleHandlingFloat(vehicle, "CHandlingData", value[1], GetVehicleHandlingFloat(vehicle, "CHandlingData", value[1]) + value[2] * modifier)
     end
-    
     if driftMode then PerformanceUpgradeVehicle(vehicle) end
-    
     if GetVehicleHandlingFloat(vehicle, "CHandlingData", "fInitialDragCoeff") < 90 then
-
         SetVehicleEnginePowerMultiplier(vehicle, 0.0)
-
     elseif GetVehicleHandlingFloat(vehicle, "CHandlingData", "fInitialDragCoeff") > 90 then
-
         if GetVehicleHandlingFloat(vehicle, "CHandlingData", "fDriveBiasFront") == 0 then
             SetVehicleEnginePowerMultiplier(vehicle, 190.0)
         else
             SetVehicleEnginePowerMultiplier(vehicle, 100.0)
         end
-
     end
-
-    
 end
 
-local spawnVehicleList = {
-    "adder",
-}
-
 local function SpawnVeh()
-    local model = spawnVehicleList[math.random(1, #spawnVehicleList)]
+    local model = config.DriftVehicleList[math.random(1, #config.DriftVehicleList)]
     LoadModel(model)
     local coords = vector3(-1003.4766, -2760.7207, 13.7569)
     local heading = 328.0185
@@ -107,7 +94,7 @@ local function CreateMenuPed()
     SetEntityInvincible(menuped, true)
     SetPedKeepTask(menuped, true)
     SetBlockingOfNonTemporaryEvents(menuped, true)
-    exports['qb-target']:AddTargetModel(model, {
+    exports['qb-target']:AddTargetEntity(menuped, {
         options = {{
             name = "createpedmenu",
             type = "client",
@@ -121,7 +108,7 @@ local function CreateMenuPed()
                 return true
             end
         }},
-        distance = 1.0
+        distance = 2.0
     })
 end
 

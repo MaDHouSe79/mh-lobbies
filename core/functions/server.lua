@@ -68,6 +68,10 @@ end
 function IsPlayerACheater(playerId)
     local license = GetPlayerIdentifierByType(playerId, 'license')
     local player = MySQL.Sync.fetchAll("SELECT * FROM "..PlayersTable.." WHERE license = ?", {license})[1]
+    if player == nil then
+        local license2 = GetPlayerIdentifierByType(playerId, 'license2')
+        player = MySQL.Sync.fetchAll("SELECT * FROM "..PlayersTable.." WHERE license = ?", {license2})[1]
+    end
     if tonumber(player.cheater) == 1 then return true else return false end
 end
 

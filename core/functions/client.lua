@@ -236,8 +236,8 @@ function CreateMenuTarget()
                 distance = 1.0
             })
         elseif config.Target == 'ox_target' then
-            exports.ox_target:removeModel("prop_phonebox_01b", 'lobbies')
-            exports.ox_target:addModel("prop_phonebox_01b", {{
+            exports.ox_target:removeModel(config.TeleportModels, 'lobbies')
+            exports.ox_target:addModel(config.TeleportModels, {{
                 name = 'lobbies',
                 icon = "fas fa-ticket",
                 label = "MH "..Lang:t('lobbie_menu'),

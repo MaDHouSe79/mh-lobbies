@@ -22,10 +22,6 @@
     </a>      
 </p>
 
-<p align="center">
-    <img src="https://komarev.com/ghpvc/?username=MaDHouSe79&label=Profile%20views&color=3464eb&style=for-the-badge&logo=star&abbreviated=true" alt="MaDHouSe79" style="padding-right:20px;" />
-</p>
-
 # MH Lobbies (QB/ESX)
 - Have multiple lobbies(dimensions) in your single rp server, you can `add/delete` more lobbies very easy.
 - There is a `cheat` lobbie build in, this will send the cheater to a cheater lobbie with `cheat mode` enabled,

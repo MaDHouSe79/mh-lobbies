@@ -1,7 +1,6 @@
 --[[ ===================================================== ]]--
 --[[                 MH Lobbies by MaDHouSe                ]]--
 --[[ ===================================================== ]]--
-
 RegisterCommand("setcheater", function(source, args, rawCommand)
     local playerId = nil
     if type(args[1]) == 'string' then playerId = tonumber(args[1]) end
