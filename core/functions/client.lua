@@ -172,24 +172,46 @@ function OpenMenu(entity)
     TaskTurnPedToFaceEntity(PlayerPedId(), entity, 1000)
     Wait(1500)
     if config.UseProgressBar then
-        Progressbar('openLobbieMenu', "MH "..Lang:t('load_lobbie_menu'), config.ProgressBarTimer, false, true, {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true
-        }, {
-            animDict = 'amb@prop_human_atm@male@enter',
-            anim = 'enter'
-        }, {
-            model = 'prop_cs_credit_card',
-            bone = 28422,
-            coords = vector3(0.1, 0.03, -0.05),
-            rotation = vector3(0.0, 0.0, 180.0)
-        }, {}, function()
-            OpenLobbieMenu()
-        end, function()
-            ClearPedTasks(PlayerPedId())
-        end)
+        if GetResourceState("qbx_core") ~= 'missing' then
+        if lib.progressCircle({
+            duration = config.ProgressBarTimer,
+            position = 'bottom',
+            useWhileDead = false,
+            canCancel = false,
+            disable = {
+                car = true,
+            },
+            anim = {
+                dict = 'amb@prop_human_atm@male@enter',
+                clip = 'enter'
+            },
+            prop = {
+                model = 'prop_cs_credit_card',
+                bone = 28422,
+                pos = vec3(0.1, 0.03, -0.05),
+                rot = vec3(0.0, 0.0, 180.0)
+            },
+        }) then OpenLobbieMenu() else ClearPedTasks(PlayerPedId()) end
+        elseif GetResourceState("qb-core") ~= 'missing' then
+            Progressbar('openLobbieMenu', "MH "..Lang:t('load_lobbie_menu'), config.ProgressBarTimer, false, true, {
+                disableMovement = true,
+                disableCarMovement = true,
+                disableMouse = false,
+                disableCombat = true
+            }, {
+                animDict = 'amb@prop_human_atm@male@enter',
+                anim = 'enter'
+            }, {
+                model = 'prop_cs_credit_card',
+                bone = 28422,
+                coords = vector3(0.1, 0.03, -0.05),
+                rotation = vector3(0.0, 0.0, 180.0)
+            }, {}, function()
+                OpenLobbieMenu()
+            end, function()
+                ClearPedTasks(PlayerPedId())
+            end)
+        end
     elseif not config.UseProgressBar then
         OpenLobbieMenu()
     end
@@ -223,7 +245,7 @@ function CreateMenuTarget()
                     type = "client",
                     event = "",
                     icon = "fas fa-ticket",
-                    label = "MH "..Lang:t('lobbie_menu'),
+                    label = "MH "..Lang:t('lobbie_menu', {id = lobbie}),
                     action = function(entity)
                         OpenMenu(entity)
                     end,
@@ -240,7 +262,7 @@ function CreateMenuTarget()
             exports.ox_target:addModel(config.TeleportModels, {{
                 name = 'lobbies',
                 icon = "fas fa-ticket",
-                label = "MH "..Lang:t('lobbie_menu'),
+                label = "MH "..Lang:t('lobbie_menu', {id = lobbie}),
                 onSelect = function(data)
                     OpenMenu(data.entity)
                 end,

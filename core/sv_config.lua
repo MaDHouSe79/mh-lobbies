@@ -41,7 +41,7 @@ SV_Config.PlanePedList = {
     [6] = "MP_Plane_Passenger_7"
 }
 --
-SV_Config.UseProgressBar = false
+SV_Config.UseProgressBar = true
 SV_Config.ProgressBarTimer = 1000
 --
 SV_Config.CheatLobbie = 1000 -- cheater lobbie id
