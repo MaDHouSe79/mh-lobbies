@@ -125,7 +125,7 @@ end
 function OpenLobbieMenu()
     local menu = {}
     if config.Menu == 'qb' then
-        menu = {{header = "MH "..Lang:t('lobbie_menu', {id = lobbie}), isMenuHeader = true}}
+        menu = {{header = "MH "..Lang:t('lobbie_menu_header'), isMenuHeader = true}}
         for _, data in pairs(config.Lobbies) do
             local txt = Lang:t('players')
             if data.players == 1 then txt = Lang:t('players') end
@@ -150,7 +150,7 @@ function OpenLobbieMenu()
             if data.players == 1 then txt = Lang:t('player') end
             menu[#menu + 1] = {
                 id = data.id,
-                title = data.label,
+                title = "#" .. data.id .. " " .. data.label,
                 description = "",
                 arrow = true,
                 onSelect = function()
@@ -163,7 +163,7 @@ function OpenLobbieMenu()
             }
         end
         table.sort(menu, function(a, b) if a.id and b.id then return a.id < b.id end end)
-        lib.registerContext({id = 'ServerLobbieMenu', title = "MH "..Lang:t('lobbie_menu', {id = lobbie}), options = menu})
+        lib.registerContext({id = 'ServerLobbieMenu', title = "MH "..Lang:t('lobbie_menu_header'), options = menu})
         lib.showContext('ServerLobbieMenu')
     end
 end
@@ -245,7 +245,7 @@ function CreateMenuTarget()
                     type = "client",
                     event = "",
                     icon = "fas fa-ticket",
-                    label = "MH "..Lang:t('lobbie_menu', {id = lobbie}),
+                    label = "MH "..Lang:t('lobbie_menu_header'),
                     action = function(entity)
                         OpenMenu(entity)
                     end,
@@ -262,7 +262,7 @@ function CreateMenuTarget()
             exports.ox_target:addModel(config.TeleportModels, {{
                 name = 'lobbies',
                 icon = "fas fa-ticket",
-                label = "MH "..Lang:t('lobbie_menu', {id = lobbie}),
+                label = "MH "..Lang:t('lobbie_menu_header'),
                 onSelect = function(data)
                     OpenMenu(data.entity)
                 end,

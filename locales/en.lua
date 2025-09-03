@@ -1,4 +1,5 @@
 local Translations = {
+    ['lobbie_menu_header'] = "Lobbie Menu",
     ['lobbie_menu'] = "Lobbie Menu %{id}",
     ['open_lobbie_menu'] = "~w~[~g~E~w~] - Open Lobbie Menu",
     ['load_lobbie_menu'] = "Load Lobbie Menu",
